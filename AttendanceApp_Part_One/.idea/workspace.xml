@@ -19,18 +19,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a6329f4-1f9e-4f4f-84c7-fe372cff0b73" name="Default" comment="">
-      <change type="MOVED" beforePath="C:\Users\Valentine\Dropbox\TechCenter\Android\Apps\Android_Studio\BlogPosts\AttendanceApp_Part_One\app\src\main\java\com\okason\attendanceapp\fragments\AttendanceFragments.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/okason/attendanceapp/fragments/AttendanceFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/okason/attendanceapp/fragments/AttendantFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/okason/attendanceapp/fragments/AttendantFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/okason/attendanceapp/fragments/EventsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/okason/attendanceapp/fragments/EventsFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/okason/attendanceapp/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/okason/attendanceapp/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_attendance_fragments.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_attendance_fragments.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_attendant.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_attendant.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_events.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_events.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AttendanceApp.iws" />
@@ -138,6 +126,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Val Okafor" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="GradleLocalSettings">
@@ -1951,6 +1944,13 @@
       <option name="number" value="Default" />
       <updated>1434260341040</updated>
     </task>
+    <task id="LOCAL-00001" summary="Implement RecyclerView OnClick Handler">
+      <created>1434350253666</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1434350253666</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1996,6 +1996,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Implement RecyclerView OnClick Handler" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement RecyclerView OnClick Handler" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
