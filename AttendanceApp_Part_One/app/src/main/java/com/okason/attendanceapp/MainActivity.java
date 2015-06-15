@@ -1,17 +1,23 @@
 package com.okason.attendanceapp;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.okason.attendanceapp.adapters.NavDrawerAdapter;
+import com.okason.attendanceapp.fragments.AttendanceFragment;
+import com.okason.attendanceapp.fragments.AttendantFragment;
+import com.okason.attendanceapp.fragments.EventsFragment;
 import com.okason.attendanceapp.models.DrawerItem;
 
 import java.util.ArrayList;
@@ -25,6 +31,12 @@ public class MainActivity extends AppCompatActivity {
     public String HEADER_EMAIL = "valokafor@someemail.com";
     public int HEADER_IMAGE = R.drawable.val_okafor;
 
+    private final static int ATTENDANT_FRAGMENT = 1;
+    private final static int EVENTS_FRAGMENT = 2;
+    private final static int ATTENDANCE_FRAGMENT = 3;
+
+    private int currentFragment = 1;
+
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private DrawerLayout Drawer;
@@ -36,14 +48,51 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+
         mRecyclerView = (RecyclerView) findViewById(R.id.RecyclerView);
         mRecyclerView.setHasFixedSize(true);
         dataList = new ArrayList<DrawerItem>();
         addItemsToDataList();
+
         mAdapter = new NavDrawerAdapter(dataList, this, HEADER_NAME, HEADER_EMAIL, HEADER_IMAGE);
+
         mRecyclerView.setAdapter(mAdapter);
+
+        final GestureDetector mGestureDetector =
+                new GestureDetector(MainActivity.this, new GestureDetector.SimpleOnGestureListener() {
+                    @Override
+                    public boolean onSingleTapUp(MotionEvent e) {
+                        return true;
+                    }
+                });
+
+        mRecyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(RecyclerView recyclerView, MotionEvent motionEvent) {
+                View child = recyclerView.findChildViewUnder(motionEvent.getX(),motionEvent.getY());
+
+                if (child != null && mGestureDetector.onTouchEvent(motionEvent)){
+                    Drawer.closeDrawers();
+                    onTouchDrawer(recyclerView.getChildLayoutPosition(child));
+                    return true;
+                }
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
+
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         Drawer = (DrawerLayout) findViewById(R.id.DrawerLayout);
@@ -59,7 +108,8 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         Drawer.setDrawerListener(mDrawerToggle);
-        mDrawerToggle.syncState(); //onTouchDrawer(currentFragment);
+        mDrawerToggle.syncState();
+        onTouchDrawer(currentFragment);
     }
 
     @Override
@@ -82,6 +132,28 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void openFragment(final Fragment fragment) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
+    }
+
+    private void onTouchDrawer(final int position) {
+    // if (currentFragment == position) return;
+     currentFragment = position;
+        switch (position) {
+            case ATTENDANT_FRAGMENT:
+                openFragment(new AttendantFragment());
+                break;
+            case EVENTS_FRAGMENT:
+                openFragment(new EventsFragment());
+                break;
+            case ATTENDANCE_FRAGMENT:
+                openFragment(new AttendanceFragment());
+                break;
+            default:
+                return;
+        }
     }
 
     private void addItemsToDataList() {

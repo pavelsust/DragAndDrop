@@ -2,7 +2,7 @@ package com.okason.attendanceapp.fragments;
 
 
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +12,10 @@ import com.okason.attendanceapp.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AttendanceFragments extends Fragment {
+public class AttendanceFragment extends Fragment {
 
 
-    public AttendanceFragments() {
+    public AttendanceFragment() {
         // Required empty public constructor
     }
 
