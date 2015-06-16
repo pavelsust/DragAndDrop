@@ -27,9 +27,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private Toolbar mToolbar;
 
-    public String HEADER_NAME = "Val Okafor";
+    public String HEADER_NAME = "Val Okafor";  //this shows your name in the navigation header
     public String HEADER_EMAIL = "valokafor@someemail.com";
-    public int HEADER_IMAGE = R.drawable.val_okafor;
+    public int HEADER_IMAGE = 1; //we will change this later to point to a resource file
 
     private final static int ATTENDANT_FRAGMENT = 1;
     private final static int EVENTS_FRAGMENT = 2;
