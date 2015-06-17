@@ -15,6 +15,7 @@ public class Event extends SugarRecord<Event> {
     private Long EventDate;
     private String Venue;
     private String City;
+    private String OrganizerName;
     private String SerializedAttendantsList;
     private String EventPicturePath;
     private int EventPictureId;
@@ -22,6 +23,14 @@ public class Event extends SugarRecord<Event> {
 
     //Default constructor needed for SugarORM
     public Event(){}
+
+    public String getOrganizerName() {
+        return OrganizerName;
+    }
+
+    public void setOrganizerName(String organizerName) {
+        OrganizerName = organizerName;
+    }
 
     private List<Attendant> GuestList;
 

@@ -31,5 +31,6 @@
     <string name="title_create_event">Create Event</string>
     <string name="image_description">Event</string>
     <string name="button_profile">Profile</string>
+    <string name="required_fields_empty">Required Field Empty</string>
 
 </resources>
