@@ -32,5 +32,10 @@
     <string name="image_description">Event</string>
     <string name="button_profile">Profile</string>
     <string name="required_fields_empty">Required Field Empty</string>
+    <string name="share">Share Event</string>
+    <string name="delete_events">Delete Event</string>
+    <string name="set_active_event">Set Event as Active</string>
+    <string name="cancel">Cancel</string>
+    <string name="add_event">Add Event</string>
 
 </resources>

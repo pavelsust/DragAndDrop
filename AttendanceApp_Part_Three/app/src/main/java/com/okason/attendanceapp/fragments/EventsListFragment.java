@@ -11,13 +11,16 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateFormat;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.melnykov.fab.FloatingActionButton;
 import com.okason.attendanceapp.Helpers.Constants;
+import com.okason.attendanceapp.MainActivity;
 import com.okason.attendanceapp.R;
 import com.okason.attendanceapp.adapters.EventsAdapter;
 import com.okason.attendanceapp.models.Attendant;
@@ -66,7 +69,40 @@ public class EventsListFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //promptForAdd();
+                promptForAdd();
+            }
+        });
+
+        final GestureDetector mGestureDetector =
+                new GestureDetector(getActivity(), new GestureDetector.SimpleOnGestureListener() {
+                    @Override
+                    public boolean onSingleTapUp(MotionEvent e) {
+                        return true;
+                    }
+                });
+
+        mRecyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(RecyclerView recyclerView, MotionEvent motionEvent) {
+                View child = recyclerView.findChildViewUnder(motionEvent.getX(), motionEvent.getY());
+
+                if (child != null && mGestureDetector.onTouchEvent(motionEvent)) {
+                    int pos = recyclerView.getChildLayoutPosition(child);
+                    Event selectedEvent = mEventsList.get(pos);
+                    PickActionPrompt(selectedEvent);
+                    return true;
+                }
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
             }
         });
 
@@ -104,7 +140,7 @@ public class EventsListFragment extends Fragment {
         saveDialog.setMessage("Are you sure you want to delete " + selectedEvent.getName() + "?");
         saveDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-               selectedEvent.delete();
+                selectedEvent.delete();
             }
         });
         saveDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -114,6 +150,72 @@ public class EventsListFragment extends Fragment {
         });
         saveDialog.show();
     }
+
+    private void PickActionPrompt(final Event selectedEvent){
+        final String[] options = { getString(R.string.share),  getString(R.string.delete_events), getString(R.string.set_active_event), getString(R.string.cancel)};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle(selectedEvent.getName());
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case 0:
+                        shareEvent(selectedEvent);
+                        break;
+                    case 1:
+                        deleteEvent(selectedEvent);
+                        break;
+                    case 2:
+                        setEventAsActive(selectedEvent);
+                    case 3:
+                        dialog.dismiss();
+                        break;
+                    default:
+                        dialog.dismiss();
+                        break;
+                }
+            }
+        });
+        builder.show();
+    }
+
+    /**
+     * method that is called when the Floating Action Button is clicked
+     * This shows a dialog to pick an item add and the options are an Event or Attendant
+     */
+    private void promptForAdd(){
+        //Create a list of options or actions to be shown in the dialog prompt
+        final String[] options = {getString(R.string.title_create_event), getString(R.string.title_registration), getString(R.string.cancel)};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Add ...");
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Get a reference to the parent Activity so we can call methods
+                //In the parent activity, the signature of those methods has to be public
+
+                MainActivity parentActivity = (MainActivity)getActivity();
+
+                switch (which){
+                    case 0:
+                        parentActivity.openFragment(new AddEventFragment());
+                        break;
+                    case 1:
+                        parentActivity.openFragment(new AddAttendantFragment());
+                        break;
+                    case 2:
+                        dialog.dismiss();
+                        break;
+                }
+
+            }
+        });
+
+        builder.show();
+    }
+
 
 
     private void addTestEvents(){
