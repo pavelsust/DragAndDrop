@@ -15,9 +15,10 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.okason.attendanceapp.adapters.NavDrawerAdapter;
-import com.okason.attendanceapp.fragments.AttendanceFragment;
-import com.okason.attendanceapp.fragments.AttendantFragment;
-import com.okason.attendanceapp.fragments.EventsFragment;
+import com.okason.attendanceapp.fragments.AddAttendantFragment;
+import com.okason.attendanceapp.fragments.AddEventFragment;
+import com.okason.attendanceapp.fragments.AttendanceListFragment;
+import com.okason.attendanceapp.fragments.EventsListFragment;
 import com.okason.attendanceapp.models.DrawerItem;
 
 import java.util.ArrayList;
@@ -31,9 +32,10 @@ public class MainActivity extends AppCompatActivity {
     public String HEADER_EMAIL = "valokafor@someemail.com";
     public int HEADER_IMAGE = 1; //we will change this later to point to a resource file
 
-    private final static int ATTENDANT_FRAGMENT = 1;
+    private final static int ATTENDANCE_FRAGMENT = 1;
     private final static int EVENTS_FRAGMENT = 2;
-    private final static int ATTENDANCE_FRAGMENT = 3;
+    private final static int ATTENDANT_FRAGMENT = 3;
+    private final static int CREATE_EVENT_FRAGMENT = 4;
 
     private int currentFragment = 1;
 
@@ -139,17 +141,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onTouchDrawer(final int position) {
-    // if (currentFragment == position) return;
-     currentFragment = position;
+        // if (currentFragment == position) return;
+        currentFragment = position;
         switch (position) {
-            case ATTENDANT_FRAGMENT:
-                openFragment(new AttendantFragment());
+            case ATTENDANCE_FRAGMENT:
+                openFragment(new AttendanceListFragment());
+                setTitle(getString(R.string.title_attendants));
                 break;
             case EVENTS_FRAGMENT:
-                openFragment(new EventsFragment());
+                openFragment(new EventsListFragment());
+                setTitle(getString(R.string.title_events));
                 break;
-            case ATTENDANCE_FRAGMENT:
-                openFragment(new AttendanceFragment());
+            case ATTENDANT_FRAGMENT:
+                openFragment(new AddAttendantFragment());
+                setTitle(getString(R.string.title_registration));
+                break;
+            case CREATE_EVENT_FRAGMENT:
+                openFragment(new AddEventFragment());
+                setTitle(getString(R.string.title_create_event));
                 break;
             default:
                 return;
@@ -159,5 +168,6 @@ public class MainActivity extends AppCompatActivity {
     private void addItemsToDataList() {
         dataList.add(new DrawerItem(getString(R.string.title_attendants), R.drawable.ic_action_attendants));
         dataList.add(new DrawerItem(getString(R.string.title_events), R.drawable.ic_action_events));
-        dataList.add(new DrawerItem(getString(R.string.title_registration), R.drawable.ic_action_attendant));}
+        dataList.add(new DrawerItem(getString(R.string.title_registration), R.drawable.ic_action_attendant));
+        dataList.add(new DrawerItem(getString(R.string.title_create_event), R.drawable.ic_action_create_event));}
 }

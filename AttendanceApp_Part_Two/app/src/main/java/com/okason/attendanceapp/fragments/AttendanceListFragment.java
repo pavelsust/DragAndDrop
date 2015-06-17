@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AttendanceFragment extends Fragment {
+public class AttendanceListFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -28,7 +28,7 @@ public class AttendanceFragment extends Fragment {
     private View mRootView;
 
 
-    public AttendanceFragment() {
+    public AttendanceListFragment() {
         // Required empty public constructor
     }
 

@@ -12,10 +12,10 @@ import com.okason.attendanceapp.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AttendanceFragment extends Fragment {
+public class AttendanceListFragment extends Fragment {
 
 
-    public AttendanceFragment() {
+    public AttendanceListFragment() {
         // Required empty public constructor
     }
 

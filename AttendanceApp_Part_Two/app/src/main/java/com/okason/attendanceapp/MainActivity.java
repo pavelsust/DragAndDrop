@@ -16,9 +16,9 @@ import android.view.View;
 
 import com.okason.attendanceapp.adapters.NavDrawerAdapter;
 import com.okason.attendanceapp.fragments.AddEventFragment;
-import com.okason.attendanceapp.fragments.AttendanceFragment;
-import com.okason.attendanceapp.fragments.AttendantFragment;
-import com.okason.attendanceapp.fragments.EventsFragment;
+import com.okason.attendanceapp.fragments.AttendanceListFragment;
+import com.okason.attendanceapp.fragments.AddAttendantFragment;
+import com.okason.attendanceapp.fragments.EventsListFragment;
 import com.okason.attendanceapp.models.DrawerItem;
 
 import java.util.ArrayList;
@@ -144,15 +144,15 @@ public class MainActivity extends AppCompatActivity {
      currentFragment = position;
         switch (position) {
             case ATTENDANCE_FRAGMENT:
-                openFragment(new AttendanceFragment());
+                openFragment(new AttendanceListFragment());
                 setTitle(getString(R.string.title_attendants));
                 break;
             case EVENTS_FRAGMENT:
-                openFragment(new EventsFragment());
+                openFragment(new EventsListFragment());
                 setTitle(getString(R.string.title_events));
                 break;
             case ATTENDANT_FRAGMENT:
-                openFragment(new AttendantFragment());
+                openFragment(new AddAttendantFragment());
                 setTitle(getString(R.string.title_registration));
                 break;
             case CREATE_EVENT_FRAGMENT:

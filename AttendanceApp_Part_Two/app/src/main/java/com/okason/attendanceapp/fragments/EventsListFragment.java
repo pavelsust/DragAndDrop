@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class EventsFragment extends Fragment {
+public class EventsListFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -31,7 +31,7 @@ public class EventsFragment extends Fragment {
 
 
 
-    public EventsFragment() {
+    public EventsListFragment() {
         // Required empty public constructor
     }
 
