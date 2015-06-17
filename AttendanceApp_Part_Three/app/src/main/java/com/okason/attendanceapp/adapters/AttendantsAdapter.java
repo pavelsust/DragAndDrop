@@ -112,6 +112,8 @@ public class AttendantsAdapter extends RecyclerView.Adapter<AttendantsAdapter.Vi
                             //into or to go to the Event list and set one of the listed events as active
                             Toast.makeText(mContext, "Unable to  checked in, no active event found ", Toast.LENGTH_SHORT).show();
                         }
+                    } else {
+                        Toast.makeText(mContext, "Unable to  checked in, no active event found ", Toast.LENGTH_SHORT).show();
                     }
 
                 } else {

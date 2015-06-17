@@ -135,12 +135,13 @@ public class EventsListFragment extends Fragment {
     }
 
     private void deleteEvent(Event selectedEvent){
+        final Event eventToBeDeleted = selectedEvent;
         AlertDialog.Builder saveDialog = new AlertDialog.Builder(getActivity());
         saveDialog.setTitle("Delete Event!");
         saveDialog.setMessage("Are you sure you want to delete " + selectedEvent.getName() + "?");
         saveDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                selectedEvent.delete();
+                eventToBeDeleted.delete();
             }
         });
         saveDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

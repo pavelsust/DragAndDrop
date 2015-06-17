@@ -49,8 +49,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textOn="Check in"
-                android:textOff="Check out"
+                android:textOn="Check Out"
+                android:textOff="Check In"
                 style="@style/UIButton"
                 />
 
