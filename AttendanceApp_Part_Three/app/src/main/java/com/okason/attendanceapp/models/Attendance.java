@@ -1,9 +1,11 @@
 package com.okason.attendanceapp.models;
 
+import com.orm.SugarRecord;
+
 /**
  * Created by Valentine on 6/16/2015.
  */
-public class Attendance {
+public class Attendance extends SugarRecord<Attendance>{
     private Long CheckInTime;
     private Long CheckOutTime;
     private Event Event;

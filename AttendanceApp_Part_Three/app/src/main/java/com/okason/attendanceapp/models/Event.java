@@ -2,6 +2,7 @@ package com.okason.attendanceapp.models;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.orm.SugarRecord;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
 /**
  * Created by Valentine on 6/16/2015.
  */
-public class Event <Event>{
+public class Event extends SugarRecord<Event> {
     private String Name;
     private Long EventDate;
     private String Venue;

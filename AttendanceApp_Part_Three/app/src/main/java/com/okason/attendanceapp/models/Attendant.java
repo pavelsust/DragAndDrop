@@ -1,11 +1,13 @@
 package com.okason.attendanceapp.models;
 
+import com.orm.SugarRecord;
+
 import java.util.List;
 
 /**
  * Created by Valentine on 6/16/2015.
  */
-public class Attendant {
+public class Attendant extends SugarRecord<Attendant>{
     private String Name;
     private String Email;
     private String Phone;
