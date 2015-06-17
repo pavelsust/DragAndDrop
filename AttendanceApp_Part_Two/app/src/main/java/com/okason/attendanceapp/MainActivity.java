@@ -15,6 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.okason.attendanceapp.adapters.NavDrawerAdapter;
+import com.okason.attendanceapp.fragments.AddEventFragment;
 import com.okason.attendanceapp.fragments.AttendanceFragment;
 import com.okason.attendanceapp.fragments.AttendantFragment;
 import com.okason.attendanceapp.fragments.EventsFragment;
@@ -31,9 +32,10 @@ public class MainActivity extends AppCompatActivity {
     public String HEADER_EMAIL = "valokafor@someemail.com";
     public int HEADER_IMAGE = R.drawable.val_okafor;
 
-    private final static int ATTENDANT_FRAGMENT = 1;
+    private final static int ATTENDANCE_FRAGMENT = 1;
     private final static int EVENTS_FRAGMENT = 2;
-    private final static int ATTENDANCE_FRAGMENT = 3;
+    private final static int ATTENDANT_FRAGMENT = 3;
+    private final static int CREATE_EVENT_FRAGMENT = 4;
 
     private int currentFragment = 1;
 
@@ -115,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -142,22 +143,34 @@ public class MainActivity extends AppCompatActivity {
     // if (currentFragment == position) return;
      currentFragment = position;
         switch (position) {
-            case ATTENDANT_FRAGMENT:
-                openFragment(new AttendantFragment());
+            case ATTENDANCE_FRAGMENT:
+                openFragment(new AttendanceFragment());
+                setTitle(getString(R.string.title_attendants));
                 break;
             case EVENTS_FRAGMENT:
                 openFragment(new EventsFragment());
+                setTitle(getString(R.string.title_events));
                 break;
-            case ATTENDANCE_FRAGMENT:
-                openFragment(new AttendanceFragment());
+            case ATTENDANT_FRAGMENT:
+                openFragment(new AttendantFragment());
+                setTitle(getString(R.string.title_registration));
+                break;
+            case CREATE_EVENT_FRAGMENT:
+                openFragment(new AddEventFragment());
+                setTitle(getString(R.string.title_create_event));
                 break;
             default:
                 return;
         }
     }
 
+    public void setTitle(String title){
+        getSupportActionBar().setTitle(title);
+    }
+
     private void addItemsToDataList() {
         dataList.add(new DrawerItem(getString(R.string.title_attendants), R.drawable.ic_action_attendants));
         dataList.add(new DrawerItem(getString(R.string.title_events), R.drawable.ic_action_events));
-        dataList.add(new DrawerItem(getString(R.string.title_registration), R.drawable.ic_action_attendant));}
+        dataList.add(new DrawerItem(getString(R.string.title_registration), R.drawable.ic_action_attendant));
+        dataList.add(new DrawerItem(getString(R.string.title_create_event), R.drawable.ic_action_create_event));}
 }
