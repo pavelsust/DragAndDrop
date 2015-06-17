@@ -1,15 +1,23 @@
 package com.okason.attendanceapp.fragments;
 
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.melnykov.fab.FloatingActionButton;
+import com.okason.attendanceapp.Helpers.Constants;
 import com.okason.attendanceapp.R;
 import com.okason.attendanceapp.adapters.EventsAdapter;
 import com.okason.attendanceapp.models.Attendant;
@@ -66,6 +74,45 @@ public class EventsListFragment extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
 
         return mRootView;
+    }
+
+    private void setEventAsActive(Event selectedEvent){
+        //obtain an instance of the SharedPreference
+        SharedPreferences mPref = getActivity().getSharedPreferences(Constants.PREFERENCE_FILE_KEY, Context.MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mPref.edit();
+
+        //put the id of the selected event to the SharedPreference
+        mEditor.putLong(Constants.ACVTIVE_EVENT_ID, selectedEvent.getId());
+        mEditor.commit();
+        Toast.makeText(getActivity(), selectedEvent.getName() + " is now the Active Event", Toast.LENGTH_SHORT).show();
+    }
+
+    private void shareEvent(Event selectedEvent){
+        java.text.DateFormat dateFormat = DateFormat.getMediumDateFormat(getActivity());
+
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "You are invited to our upcoming event - " +
+                selectedEvent.getName() + " on " + dateFormat.format(selectedEvent.getEventDate()));
+        shareIntent.setType("text/plain");
+        startActivity(shareIntent);
+    }
+
+    private void deleteEvent(Event selectedEvent){
+        AlertDialog.Builder saveDialog = new AlertDialog.Builder(getActivity());
+        saveDialog.setTitle("Delete Event!");
+        saveDialog.setMessage("Are you sure you want to delete " + selectedEvent.getName() + "?");
+        saveDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+               selectedEvent.delete();
+            }
+        });
+        saveDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        saveDialog.show();
     }
 
 
