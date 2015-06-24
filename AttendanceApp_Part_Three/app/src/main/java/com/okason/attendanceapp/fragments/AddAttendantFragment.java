@@ -22,7 +22,7 @@ public class AddAttendantFragment extends Fragment {
     private EditText mName, mEmail, mPhone, mStreet, mCity, mZip, mState;
     Button mSaveButton;
     private View mRootView;
-    Attendant mAttendant;
+
 
 
     public AddAttendantFragment() {
@@ -97,6 +97,7 @@ public class AddAttendantFragment extends Fragment {
 
     private void saveAttendant() {
         //populate the Attendant object with the data entered in the screen
+        Attendant mAttendant;
         mAttendant = new Attendant();
         mAttendant.setName(mName.getText().toString());
         mAttendant.setEmail(mEmail.getText().toString());

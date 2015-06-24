@@ -37,5 +37,7 @@
     <string name="set_active_event">Set Event as Active</string>
     <string name="cancel">Cancel</string>
     <string name="add_event">Add Event</string>
+    <string name="description_attendant_image">Attendant Image</string>
+    <string name="pick_date">Event Date</string>
 
 </resources>

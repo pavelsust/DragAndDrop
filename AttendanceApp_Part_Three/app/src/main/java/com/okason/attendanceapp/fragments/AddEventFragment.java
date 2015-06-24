@@ -1,31 +1,34 @@
 package com.okason.attendanceapp.fragments;
 
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.okason.attendanceapp.R;
 import com.okason.attendanceapp.models.Event;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.util.Calendar;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class AddEventFragment extends Fragment {
-    private EditText mName, mDate, mVenue, mCity, mImage, mOrganizer;
-    Button mSaveButton;
+    private EditText mName,  mVenue, mCity, mImage, mOrganizer;
+    Button mSaveButton,mDate ;
     private View mRootView;
-    private Event mEvent;
+    private Event mEvent;    public Calendar mEventDate;
+
+
 
 
     public AddEventFragment() {
@@ -44,21 +47,32 @@ public class AddEventFragment extends Fragment {
 
     private void initView() {
         mName = (EditText) mRootView.findViewById(R.id.edit_text_event_name);
-        mDate = (EditText)mRootView.findViewById(R.id.edit_text_event_date);
+        mDate = (Button)mRootView.findViewById(R.id.event_date_button);
+        mDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();
+            }
+        });
         mVenue = (EditText) mRootView.findViewById(R.id.edit_text_event_venue);
         mCity = (EditText) mRootView.findViewById(R.id.edit_text_event_city);
         mImage = (EditText)mRootView.findViewById(R.id.edit_text_event_image);
         mOrganizer = (EditText) mRootView.findViewById(R.id.edit_text_event_organizer);
-        mSaveButton = (Button)mRootView.findViewById(R.id.save_button);
+        mSaveButton = (Button)mRootView.findViewById(R.id.button_add_event);
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (requiredFieldsCompleted()){
+                if (requiredFieldsCompleted()) {
                     saveAttendant();
                 }
 
             }
         });
+    }
+
+    public void showDatePickerDialog() {
+        DialogFragment newFragment = new EventDatePickerDialogFragment();
+        newFragment.show(getFragmentManager(), "datePicker");
     }
 
     private boolean requiredFieldsCompleted() {
@@ -99,16 +113,9 @@ public class AddEventFragment extends Fragment {
         mEvent.setOrganizerName(mOrganizer.getText().toString());
         mEvent.setEventPicturePath(mImage.getText().toString());
 
-        //perform some conversion to get the value of the date entered
-        String eventDateString = mDate.getText().toString();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy",Locale.getDefault());
-        Date convertedDate = new Date();
-        try {
-            convertedDate = dateFormat.parse(eventDateString);
-        } catch (ParseException e) {
-            e.printStackTrace();
+        if (mEventDate != null){
+            mEvent.setEventDate(mEventDate.getTimeInMillis());
         }
-        mEvent.setEventDate(convertedDate.getTime());
 
         //Save to the database
         mEvent.save();
@@ -119,6 +126,34 @@ public class AddEventFragment extends Fragment {
         //Provide feedback to the user
         Toast.makeText(getActivity(), mEvent.getName() + " saved", Toast.LENGTH_SHORT).show();
 
+    }
+
+
+     class EventDatePickerDialogFragment extends DialogFragment
+            implements DatePickerDialog.OnDateSetListener{
+
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the current date as the default date in the picker
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+
+            // Create a new instance of DatePickerDialog and return it
+            return new DatePickerDialog(getActivity(), this, year, month, day);
+        }
+
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+            if (year < 0){
+                mEventDate = null;
+            } else {
+                mEventDate = Calendar.getInstance();
+                mEventDate.set(year, month, day);
+            }
+        }
     }
 
 

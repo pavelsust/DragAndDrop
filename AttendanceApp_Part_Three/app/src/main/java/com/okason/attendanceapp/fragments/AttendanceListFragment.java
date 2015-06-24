@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.melnykov.fab.FloatingActionButton;
+import com.okason.attendanceapp.Helpers.DatabaseHelpers;
 import com.okason.attendanceapp.MainActivity;
 import com.okason.attendanceapp.R;
 import com.okason.attendanceapp.adapters.AttendantsAdapter;
@@ -154,6 +155,8 @@ public class AttendanceListFragment extends Fragment {
         guest9.setEmail("bella@outlook.com");
         guest9.setProfileImageId(R.drawable.headshot_9);
         mAttendantsList.add(guest9);
+        DatabaseHelpers db = new DatabaseHelpers(getActivity());
+        db.getWritableDatabase();
 
         Attendant guest10 = new Attendant();
         guest10.setName("Donna Simons");

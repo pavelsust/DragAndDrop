@@ -36,4 +36,13 @@
         <item name="android:paddingRight">@dimen/margin_padding_tiny</item>
     </style>
 
+    <!-- Spinner Button -->
+    <style name="SpinnerButtonStyle" parent="android:Widget.Holo.Light.Spinner">
+        <item name="android:layout_height">@dimen/text_size_height</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:paddingLeft">@dimen/margin_padding_xsmall</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
 </resources>

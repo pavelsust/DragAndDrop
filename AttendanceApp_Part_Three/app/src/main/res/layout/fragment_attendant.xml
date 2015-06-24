@@ -12,8 +12,33 @@
         android:paddingTop="5dp"
         android:paddingRight="20dp"
         android:paddingBottom="5dp">
+        <RelativeLayout
+            android:id="@+id/relative_layout_attendant_image"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+            <ImageButton
+                android:id="@+id/pictureImageButton"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/gray"
+                android:layout_centerHorizontal="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_action_camera"
+                android:contentDescription="@string/description_attendant_image"/>
+            <ImageView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_alignBottom="@id/pictureImageButton"
+                android:layout_alignRight="@id/pictureImageButton"
+                android:contentDescription="@string/description_attendant_image"
+                android:src="@drawable/ic_image_arrow"/>
+
+        </RelativeLayout>
         <EditText
             android:id="@+id/edit_text_client_name"
+            android:layout_below="@+id/relative_layout_attendant_image"
             style="@style/AddAttendantForm"
             android:hint="@string/hint_guest_name"
             android:imeOptions="actionNext" />
