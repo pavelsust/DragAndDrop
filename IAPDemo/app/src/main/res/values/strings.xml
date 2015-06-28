@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">IAPDemo</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="preference_file_key">preference_file_name</string>
+</resources>
