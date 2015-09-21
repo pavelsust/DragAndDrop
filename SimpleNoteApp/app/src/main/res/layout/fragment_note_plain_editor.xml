@@ -1,13 +1,32 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="com.okason.simplenoteapp.fragments.NotePlainEditorFragment">
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <EditText
+        android:id="@+id/edit_text_title"
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"/>
+        android:layout_height="wrap_content"
+        android:hint="Enter Title"
+        android:background="@drawable/apptheme_edit_text_holo_light"
+        android:padding="@dimen/margin_padding_tiny"
+        android:gravity="left"
+        android:singleLine="true"
+        android:textStyle="bold" />
 
-</FrameLayout>
+
+    <EditText
+        android:id="@+id/edit_text_note"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:hint="Enter Content"
+        android:layout_height="match_parent"
+        android:padding="@dimen/margin_padding_tiny"
+        android:gravity="top"
+        android:background="@drawable/apptheme_edit_text_holo_light"
+        android:inputType="textMultiLine"/>
+
+</LinearLayout>
